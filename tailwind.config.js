@@ -1,5 +1,6 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
+  darkMode: "class",
   content: ["./public/*.php", "./public/**/*.{js,css,scss}","./app/views/**/*.php"],
   theme: {
     container: {
@@ -12,9 +13,12 @@ module.exports = {
       },
       colors: {
         dark: "#0f172a",
-        primary: "#eaeaea",
-        "light-green": "#00ccc9",
-        "tertiary-gray": "#949494",
+        "primary-bg": "#cc7000",
+        "primary-text": "#ffe3ab",
+        "secondary-bg": "#f7b359",
+        "secondary-text": "#e7cf8d",
+        "tertiary-bg": "#f0bb86",
+        "tertiary-text": "#ffffff",
       },
       fontSize: {
         "2xs": "0.5rem",
