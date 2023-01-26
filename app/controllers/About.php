@@ -5,6 +5,7 @@ class About extends Controller{
         $data["title"] = "About | Index";
         $data['name'] = $name;
         $data['role'] =$role;
+        $data["about"] = true;
         $this->view("templates/header",$data);
         $this->view("about/index",$data);
         $this->view("templates/footer",$data);
