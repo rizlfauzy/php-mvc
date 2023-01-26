@@ -1,0 +1,31 @@
+<header class="bg-transparent absolute top-0 left-0 w-full flex items-center z-10">
+	<div class="container">
+		<div class="flex items-center justify-between relative">
+			<div class="px-4">
+				<a href="<?= BASE_URL ?>/home/" class="font-bold text-lg text-dark dark:text-primary block py-6">Rizal Fauzi</a>
+			</div>
+			<div class="flex items-center px-4">
+				<button id="hamburger" name="hamburger" class="block absolute right-4 lg:hidden">
+					<span class="hamburger-line origin-top-left"></span>
+					<span class="hamburger-line"></span>
+					<span class="hamburger-line origin-bottom-left"></span>
+				</button>
+				<nav id="menu" class="hidden absolute py-5 bg-gray-200 shadow-lg rounded-lg max-w-[250px] w-full right-4 top-full lg:block lg:static lg:bg-transparent lg:max-w-full lg:shadow-none lg:rounded-none dark:bg-dark dark:shadow-slate-500 lg:dark:bg-transparent">
+					<ul class="block lg:flex nav-list">
+						<li class="group hover:bg-gray-300">
+							<a href="<?= BASE_URL ?>/home/" class="text-base text-dark mx-8 flex py-2 group-hover:text-slate-800 nav-link">
+								Home
+							</a>
+						</li>
+						<li class="group hover:bg-gray-300">
+							<a href="<?= BASE_URL ?>/about/" class="text-base text-dark mx-8 flex py-2 group-hover:text-slate-800 nav-link">
+								About
+							</a>
+						</li>
+					</ul>
+				</nav>
+			</div>
+		</div>
+	</div>
+</header>
+<script src="<?= BASE_URL ?>/assets/js/navbar.js"></script>

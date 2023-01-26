@@ -1,3 +1,45 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+$primary_bg_color: #cc7000;
+$primary_text_color: #ffe3ab;
+$secondary_bg_color: #f7b359;
+$secondary_text_color: #e7cf8d;
+$tertiary_bg_color: #f0bb86;
+$tertiary_text_color: #ffffff;
+$dark_text_color: #0f172a;
+
+// navbar styles
+.navbar-fixed {
+    @apply fixed z-[9999] bg-white bg-opacity-70 backdrop-blur-sm  dark:bg-opacity-50;
+    box-shadow: inset 0 -1px 0 0 rgba($color: #000000, $alpha: 0.2);
+  }
+  #nav-menu {
+    .nav-list {
+      .active {
+        color: $secondary_bg_color;
+      }
+      .dropdown-item.active {
+        @apply dark:bg-dark bg-white dark:hover:bg-gray-800 hover:bg-gray-100;
+      }
+      .img_profil {
+        @apply w-10 h-10 rounded-full object-cover;
+        border: 3px solid $secondary_bg_color;
+      }
+    }
+  }
+.hamburger-line {
+    @apply w-[30px] h-[2px] my-2 block bg-dark transition duration-300 ease-in-out dark:bg-white;
+  }
+  .hamburger-active {
+    span:nth-child(1) {
+      @apply rotate-45;
+    }
+    span:nth-child(2) {
+      @apply scale-0;
+    }
+    span:nth-child(3) {
+      @apply -rotate-45;
+    }
+  }
