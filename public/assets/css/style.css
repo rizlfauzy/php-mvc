@@ -31,4 +31,111 @@
   @apply -rotate-45;
 }
 
+.btn {
+  padding: 10px 0;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+}
+.btn.btn_primary {
+  background-color: #cc7000;
+  border-color: #cc7000;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 1.2rem;
+  line-height: 1.5;
+  color: #ffe3ab;
+}
+.btn.btn_primary:hover {
+  background-color: #f7b359;
+  border-color: #f7b359;
+}
+.btn.btn_secondary {
+  background-color: #ffffff;
+  border-color: #ffffff;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 1.2rem;
+  line-height: 1.5;
+  color: #ffe3ab;
+}
+.btn.btn_secondary:hover {
+  background-color: #f0bb86;
+  border-color: #f0bb86;
+}
+.btn.btn_warning {
+  @apply bg-yellow-400 hover:bg-yellow-500;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 1.2rem;
+  line-height: 1.5;
+  color: #ffe3ab;
+}
+.btn.btn_reset {
+  @apply bg-red-500 hover:bg-red-600;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 1.2rem;
+  line-height: 1.5;
+  color: #ffe3ab;
+}
+.btn.btn_cancel {
+  @apply bg-gray-500 hover:bg-gray-600;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 1.2rem;
+  line-height: 1.5;
+  color: #ffe3ab;
+}
+.btn.btn_back_to_default_img {
+  font-style: normal;
+  font-weight: 300;
+  font-size: 0.8rem;
+  line-height: 1.5;
+  color: #ffe3ab;
+  @apply px-5 text-center;
+  background-color: #ffffff;
+  border-color: #ffffff;
+}
+.btn.btn_back_to_default_img:hover {
+  background-color: #f0bb86;
+  border-color: #f0bb86;
+}
+
+a.link_btn {
+  @apply px-5 text-center;
+}
+
+a.link {
+  @apply py-2;
+  border-radius: 8px;
+  display: inline-block;
+  text-align: center;
+  transition: all 0.3s ease;
+}
+a.link_primary {
+  background-color: #cc7000;
+  border-color: #cc7000;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 1rem;
+  line-height: 1.5;
+  color: #ffe3ab;
+}
+a.link_primary:hover {
+  background-color: #f7b359;
+  border-color: #f7b359;
+}
+
+table .tr_show {
+  font-style: normal;
+  font-weight: 500;
+  font-size: 1rem;
+  line-height: 1;
+  color: #000;
+}
+table .tr_show th, table .tr_show td {
+  text-align: left;
+  padding-bottom: 10px;
+}
+
 /*# sourceMappingURL=style.css.map */

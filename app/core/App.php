@@ -10,12 +10,15 @@ class App
     {
         $url = $this->parseUrl();
 
-        // method
+        // controller
         if (file_exists("../app/controllers/{$url[0]}.php")) {
             $this->controller = $url[0];
+            if (array_key_exists("1",$url) && $url[1] == "detail" && !array_key_exists("2",$url)){
+                $this->controller = "NotFound";
+                $this->method = "index";
+            }
             unset($url[0]);
         }
-
         require_once "../app/controllers/{$this->controller}.php";
         $this->controller = new $this->controller;
 
@@ -29,6 +32,7 @@ class App
         if (!empty($url)) {
             $this->params = $url;
         }
+
 
         call_user_func_array([$this->controller,$this->method],$this->params);
     }

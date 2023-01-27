@@ -19,13 +19,7 @@
                       Name
                     </th>
                     <th class="md:text-md text-sm leading-[1.25] py-2 px-3 text-slate-100 text-center">
-                      Email
-                    </th>
-                    <th class="md:text-md text-sm leading-[1.25] py-2 px-3 text-slate-100 text-center">
-                      NRP
-                    </th>
-                    <th class="md:text-md text-sm leading-[1.25] py-2 px-3 text-slate-100 text-center">
-                      Jurusan
+                      Aksi
                     </th>
                   </tr>
                 </thead>
@@ -33,19 +27,15 @@
                   <?php foreach ($data["list_mahasiswa"] as $key => $mhs) : ?>
                     <tr class="bg-gray-100 hover:bg-gray-200 border-b last:border-0 transition duration-300 ease-in-out">
                       <td class="md:text-md text-sm leading-[1.25] py-2 px-3 text-dark text-center">
-                        <?= $key+1 ?>
+                        <?= $key + 1 ?>
                       </td>
                       <td class="md:text-sm text-2xs leading-[1.25] py-2 px-3 text-dark text-center">
                         <?= $mhs->name ?>
                       </td>
                       <td class="md:text-sm text-2xs leading-[1.25] py-2 px-3 text-dark text-center">
-                        <?= $mhs->email ?>
-                      </td>
-                      <td class="md:text-sm text-2xs leading-[1.25] py-2 px-3 text-dark text-center">
-                        <?= $mhs->nrp ?>
-                      </td>
-                      <td class="md:text-sm text-2xs leading-[1.25] py-2 px-3 text-dark text-center">
-                        <?= $mhs->jurusan ?>
+                        <a class="link link_btn link_primary" href="<?= BASE_URL ?>/mahasiswa/detail/<?= $mhs->id ?>">
+                          Detail
+                        </a>
                       </td>
                     </tr>
                   <?php endforeach ?>

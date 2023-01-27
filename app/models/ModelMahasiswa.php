@@ -2,23 +2,27 @@
 
 class ModelMahasiswa
 {
-  private $dbh;
-  private $stmnt;
+  private $table = "mahasiswa";
+  private $db;
 
   public function __construct(){
-    try {
-      $dsn = "pgsql:host=" . HOST . ";port=" . PORT . ";dbname=" . DB_NAME . ";user=" . DB_USER . ";password=" . DB_PASS;
-      $this->dbh = new PDO($dsn);
-    } catch (PDOException $e) {
-      die($e->getMessage());
-    }
+    $this->db = new Database;
   }
 
   public function getListMahasiswa(){
     try {
-      $this->stmnt = $this->dbh->prepare('SELECT  "id", "name", "email", "nrp", "jurusan" FROM "public"."mahasiswa" LIMIT 1000;');
-      $this->stmnt->execute();
-      return $this->stmnt->fetchAll(PDO::FETCH_OBJ);
+      $this->db->query('SELECT  "id", "name", "email", "nrp", "jurusan" FROM '.$this->table.' LIMIT 1000;');
+      return $this->db->list();
+    } catch (\Exception $e) {
+      die($e->getMessage());
+    }
+  }
+
+  public function getMahasiswaById($id){
+    try {
+      $this->db->query('SELECT  "id", "name", "email", "nrp", "jurusan" FROM '.$this->table.' WHERE id=:id;');
+      $this->db->bind("id",$id);
+      return $this->db->single();
     } catch (\Exception $e) {
       die($e->getMessage());
     }

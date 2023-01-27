@@ -10,6 +10,26 @@ $tertiary_bg_color: #f0bb86;
 $tertiary_text_color: #ffffff;
 $dark_text_color: #0f172a;
 
+$border_radius: 5px;
+
+$font_very_very_very_small: 0.5rem;
+$font_very_very_small: 0.6rem;
+$font_very_small: 0.8rem;
+$font_small: 1rem;
+$font_medium: 1.2rem;
+$font_large: 1.4rem;
+$font_very_large: 1.6rem;
+$font_very_very_large: 2rem;
+
+// mixins
+@mixin formatText($weight, $size, $lineHeight, $color) {
+  font-style: normal;
+  font-weight: $weight;
+  font-size: $size;
+  line-height: $lineHeight;
+  color: $color;
+}
+
 // navbar styles
 .navbar-fixed {
     @apply fixed z-[9999] bg-white bg-opacity-70 backdrop-blur-sm  dark:bg-opacity-50;
@@ -41,5 +61,83 @@ $dark_text_color: #0f172a;
     }
     span:nth-child(3) {
       @apply -rotate-45;
+    }
+  }
+
+  // btn styles
+  .btn {
+    padding: 10px 0;
+    border-radius: $border_radius + 3px;
+    transition: all 0.3s ease;
+    &.btn_primary {
+      background-color: $primary_bg_color;
+      border-color: $primary_bg_color;
+      @include formatText(600, $font_medium, 1.5, $primary_text_color);
+      &:hover {
+        background-color: $secondary_bg_color;
+        border-color: $secondary_bg_color;
+      }
+    }
+    &.btn_secondary {
+      background-color: $tertiary_text_color;
+      border-color: $tertiary_text_color;
+      @include formatText(600, $font_medium, 1.5, $primary_text_color);
+      &:hover {
+        background-color: $tertiary_bg_color;
+        border-color: $tertiary_bg_color;
+      }
+    }
+    &.btn_warning {
+      @apply bg-yellow-400 hover:bg-yellow-500;
+      @include formatText(600, $font_medium, 1.5, $primary_text_color);
+    }
+    &.btn_reset {
+      @apply bg-red-500 hover:bg-red-600;
+      @include formatText(600, $font_medium, 1.5, $primary_text_color);
+    }
+    &.btn_cancel {
+      @apply bg-gray-500 hover:bg-gray-600;
+      @include formatText(600, $font_medium, 1.5, $primary_text_color);
+    }
+    &.btn_back_to_default_img {
+      @include formatText(300, $font_very_small, 1.5, $primary_text_color);
+      @apply px-5 text-center;
+      background-color: $tertiary_text_color;
+      border-color: $tertiary_text_color;
+      &:hover {
+        background-color: $tertiary_bg_color;
+        border-color: $tertiary_bg_color;
+      }
+    }
+  }
+
+  // link styles
+  a.link_btn {
+    @apply px-5 text-center;
+  }
+  a.link {
+    @apply py-2;
+    border-radius: $border_radius + 3px;
+    display: inline-block;
+    text-align: center;
+    transition: all 0.3s ease;
+    &_primary {
+      background-color: $primary_bg_color;
+      border-color: $primary_bg_color;
+      @include formatText(600, $font_small, 1.5, $primary_text_color);
+      &:hover {
+        background-color: $secondary_bg_color;
+        border-color: $secondary_bg_color;
+      }
+    }
+  }
+
+  table{
+    .tr_show{
+      @include formatText(500, $font_small, 1, #000);
+      th,td{
+        text-align: left;
+        padding-bottom: 10px;
+      }
     }
   }
