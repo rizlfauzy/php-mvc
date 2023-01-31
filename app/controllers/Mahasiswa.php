@@ -6,6 +6,7 @@ class Mahasiswa extends Controller {
         $data["mahasiswa"] = true;
         $data["list_mahasiswa"] = $this->model("ModelMahasiswa")->getListMahasiswa();
         $this->view("templates/header",$data);
+        $this->view("modals/modal_insert");
         $this->view("mahasiswa/index",$data);
         $this->view("templates/footer");
     }

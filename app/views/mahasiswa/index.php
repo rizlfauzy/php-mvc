@@ -1,5 +1,10 @@
 <section class="py-36">
   <div class="container mx-auto px-6">
+    <div class="flex-flex-wrap">
+      <div class="max-w-full w-[600px] mx-auto py-3">
+        <button class="btn btn_primary px-5" onclick="modal_insert.style.display = 'block'">Tambah</button>
+      </div>
+    </div>
     <div class="flex flex-wrap">
       <div class="max-w-full w-[600px] bg-slate-100 mx-auto px-6 py-3 rounded-[8px]">
         <div class="w-full px-5">
@@ -48,3 +53,4 @@
     </div>
   </div>
 </section>
+<script src="<?= BASE_URL; ?>/assets/js/mahasiswa.js"></script>
