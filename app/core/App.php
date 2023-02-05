@@ -11,7 +11,7 @@ class App
         $url = $this->parseUrl();
 
         // controller
-        if (file_exists("../app/controllers/{$url[0]}.php")) {
+        if ($url && file_exists("../app/controllers/{$url[0]}.php")) {
             $this->controller = $url[0];
             if (array_key_exists("1",$url) && $url[1] == "detail" && !array_key_exists("2",$url)){
                 $this->controller = "NotFound";

@@ -46,7 +46,7 @@ body {
   align-items: stretch;
   width: 100%;
 }
-.input_group > .form_control {
+.input_group > .form_control, .input_group > .form_control_search {
   position: relative;
   min-width: 0;
   flex: 1 1 auto;
@@ -80,7 +80,7 @@ body {
   line-height: 1.5;
   color: #949494;
 }
-.input_group > :is(.form_control:not(:placeholder-shown), .form_control:focus) + .place_label {
+.input_group > :is(.form_control:not(:placeholder-shown), .form_control:focus, .form_control_search:not(:placeholder-shown), .form_control_search:focus) + .place_label {
   top: 20%;
   font-style: normal;
   font-weight: 400;
@@ -120,15 +120,115 @@ body {
   @apply dark:border-blue-200 dark:shadow-slate-400 dark:shadow-[0_0_0_0.25rem];
 }
 
+.form_control_search {
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  border-bottom: 1px solid #f7b359;
+  padding: 15px 25px;
+  min-height: 45px;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 0.8rem;
+  line-height: 1.5;
+  color: #949494;
+  width: 100%;
+}
+.form_control_search:focus {
+  color: #949494;
+  border-color: #cc7000;
+  outline: 0;
+  @apply dark:border-blue-200 dark:shadow-slate-400 dark:shadow-[0_0_0_0.25rem];
+}
+
+.pop_up_wrapper {
+  position: relative;
+}
+.pop_up_wrapper > .pop_up.on_pop {
+  z-index: 998;
+  position: absolute;
+  left: 50%;
+  top: 55%;
+  transform: translate(-50%, 55%);
+  width: 300px;
+  background-color: #ffe3ab;
+  @apply dark:bg-slate-800;
+  box-shadow: -5px 5px 20px 0px grey;
+  padding: 10px 15px;
+  border-radius: 10px;
+}
+.pop_up_wrapper > .pop_up.on_pop.pop_up_modal {
+  top: 30%;
+  left: 45%;
+  transform: translate(-50%, -50%);
+  width: 225px;
+}
+.pop_up_wrapper > .pop_up.on_pop.pop_up_modal .pop_up_close button {
+  @apply p-2;
+}
+.pop_up_wrapper > .pop_up.on_pop .pop_up_header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+.pop_up_wrapper > .pop_up.on_pop .pop_up_header .pop_up_title {
+  font-style: normal;
+  font-weight: 600;
+  font-size: 1rem;
+  line-height: 1.5;
+  color: #ffe3ab;
+  @apply dark:text-white text-primary-bg;
+}
+.pop_up_wrapper > .pop_up.on_pop .pop_up_header .pop_up_close {
+  @apply cursor-pointer;
+}
+.pop_up_wrapper > .pop_up.on_pop .pop_up_header .pop_up_close button {
+  @apply px-4;
+}
+.pop_up_wrapper > .pop_up.on_pop .pop_up_table .pop_up_content_image {
+  object-fit: cover;
+  width: 100%;
+  border-radius: 5px;
+  box-shadow: 0px 3px 20px 0px grey;
+}
+.pop_up_wrapper > .pop_up.on_pop .pop_up_table .pop_up_content_image img {
+  width: 100%;
+}
+.pop_up_wrapper > .pop_up.on_pop .pop_up_button {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+.pop_up_wrapper > .pop_up.on_pop .pop_up_button button {
+  width: 100%;
+}
+@media screen and (max-width: 1024px) {
+  .pop_up_wrapper > .pop_up.on_pop {
+    width: 100%;
+    right: 50%;
+    top: -5%;
+    transform: translate(50%, 50%);
+  }
+}
+.pop_up_wrapper > .pop_up.on_hidden {
+  display: none;
+}
+
 .modal_box {
-  display: none; /* Hidden by default */
-  position: fixed; /* Stay in place */
-  z-index: 9999; /* Sit on top */
+  display: none;
+  /* Hidden by default */
+  position: fixed;
+  /* Stay in place */
+  z-index: 9999;
+  /* Sit on top */
   left: 0;
   top: 0;
-  width: 100%; /* Full width */
+  width: 100%;
+  /* Full width */
   height: 100vh;
-  overflow: auto; /* Enable scroll if needed */
+  overflow: auto;
+  /* Enable scroll if needed */
   background-color: rgba(94, 94, 94, 0.5);
   @apply dark:bg-[rgba(15,15,15,0.7)];
   padding-top: 50px;
@@ -150,8 +250,10 @@ body {
 .modal_box .modal_content {
   @apply bg-white dark:bg-slate-700;
   border-radius: 10px;
-  margin: 5% auto 15% auto; /* 5% from the top, 15% from the bottom and centered */
-  max-width: 400px; /* Could be more or less, depending on screen size */
+  margin: 5% auto 15% auto;
+  /* 5% from the top, 15% from the bottom and centered */
+  max-width: 400px;
+  /* Could be more or less, depending on screen size */
   border: 0 solid #f7b359;
 }
 .modal_box .modal_content .modal_container {

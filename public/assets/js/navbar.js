@@ -1,5 +1,14 @@
 const hambuger_btn = document.querySelector("#hamburger"),
-  header = document.querySelector("header");
+  header = document.querySelector("header"),
+  { base_url } = document.body.dataset;
+
+function addClass(e, classes) {
+  e.classList && e.classList.add(...classes.split(" "));
+}
+
+function removeClass(e, classes) {
+  e.classList && e.classList.remove(...classes.split(" "));
+}
 
 function call_data({ url, method, body }) {
   return fetch(url, {
@@ -25,7 +34,5 @@ hambuger_btn.addEventListener("click", function (e) {
 
 window.addEventListener("scroll", function (e) {
   const fixed_nav = header.offsetTop;
-  window.pageYOffset > fixed_nav
-    ? header.classList.add("navbar-fixed")
-    : header.classList.remove("navbar-fixed");
+  window.pageYOffset > fixed_nav ? header.classList.add("navbar-fixed") : header.classList.remove("navbar-fixed");
 });

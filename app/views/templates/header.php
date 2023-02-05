@@ -10,5 +10,5 @@
     <title><?= $data["title"] ?></title>
 </head>
 
-<body>
+<body data-url="<?= BASE_URL; ?>">
     <?php  require "navbar.php"; ?>

@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Mulish:wght@200;300;400;500;600;700;800;900;1000&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Mulish:wght@200;300;400;500;600;700;800;900;1000&display=swap");
 
 @tailwind base;
 @tailwind components;
@@ -33,8 +33,8 @@ $font_very_very_large: 2rem;
 }
 
 // body syles
-body{
-  font-family: 'Mulish', sans-serif;
+body {
+  font-family: "Mulish", sans-serif;
   margin: 0;
   padding: 0;
   box-sizing: border-box;
@@ -81,7 +81,8 @@ body{
   flex-wrap: wrap;
   align-items: stretch;
   width: 100%;
-  & > .form_control {
+  & > .form_control,
+  & > .form_control_search {
     position: relative;
     min-width: 0;
     flex: 1 1 auto;
@@ -104,26 +105,17 @@ body{
     @include formatText(500, $font_very_small, 1.5, $tertiary_text_color);
     &.label_modal {
       left: 10px;
-      @include formatText(
-        500,
-        $font_very_very_very_small + 0.25,
-        1.5,
-        $tertiary_text_color
-      );
+      @include formatText(500, $font_very_very_very_small + 0.25, 1.5, $tertiary_text_color);
     }
   }
-  &
-    > :is(.form_control:not(:placeholder-shown), .form_control:focus)
-    + .place_label {
+  & > :is(.form_control:not(:placeholder-shown), .form_control:focus, .form_control_search:not(:placeholder-shown), .form_control_search:focus) + .place_label {
     top: 20%;
     @include formatText(400, $font_very_very_small, 1.5, $tertiary_text_color);
   }
-  &
-    > :is(.form_control:not(:placeholder-shown), .form_control:focus)
-    + .place_label.label_modal {
+  & > :is(.form_control:not(:placeholder-shown), .form_control:focus) + .place_label.label_modal {
     @include formatText(400, $font_very_very_very_small, 1.5, $tertiary_text_color);
-  }tertiary_text_color
-  .card_btn_pass {
+  }
+  tertiary_text_color .card_btn_pass {
     &.active {
       .bi::before {
         content: "\F33F";
@@ -146,6 +138,101 @@ body{
     outline: 0;
     box-shadow: 0 0 0 0.25rem rgba(229, 155, 27, 0.25);
     @apply dark:border-blue-200 dark:shadow-slate-400 dark:shadow-[0_0_0_0.25rem];
+  }
+}
+
+.form_control_search {
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  border-bottom: 1px solid $secondary_bg_color;
+  padding: 15px 25px;
+  min-height: 45px;
+  @include formatText(500, $font_very_small, 1.5, $tertiary_text_color);
+  // border-radius: 0.75rem;
+  width: 100%;
+  &:focus {
+    color: $tertiary_text_color;
+    // background-color: #fff;
+    border-color: $primary_bg_color;
+    outline: 0;
+    // box-shadow: 0 0 0 0.25rem rgba(229, 155, 27, 0.25);
+    @apply dark:border-blue-200 dark:shadow-slate-400 dark:shadow-[0_0_0_0.25rem];
+  }
+}
+
+// popup styles
+.pop_up_wrapper {
+  position: relative;
+  & > .pop_up.on_pop {
+    z-index: 998;
+    position: absolute;
+    left: 50%;
+    top: 55%;
+    transform: translate(-50%, 55%);
+    width: 300px;
+    background-color: $primary_text_color;
+    @apply dark:bg-slate-800;
+    box-shadow: -5px 5px 20px 0px grey;
+    padding: 10px 15px;
+    border-radius: $border_radius * 2;
+    &.pop_up_modal {
+      top: 30%;
+      left: 45%;
+      transform: translate(-50%, -50%);
+      width: 225px;
+      .pop_up_close {
+        button {
+          @apply p-2;
+        }
+      }
+    }
+    .pop_up_header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 10px;
+      .pop_up_title {
+        @include formatText(600, $font_small, 1.5, $primary_text_color);
+        @apply dark:text-white text-primary-bg;
+      }
+      .pop_up_close {
+        @apply cursor-pointer;
+        button {
+          @apply px-4;
+        }
+      }
+    }
+    .pop_up_table {
+      .pop_up_content {
+        &_image {
+          object-fit: cover;
+          width: 100%;
+          border-radius: $border-radius;
+          box-shadow: 0px 3px 20px 0px grey;
+          img {
+            width: 100%;
+          }
+        }
+      }
+    }
+    .pop_up_button {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 10px;
+      button {
+        width: 100%;
+      }
+    }
+    @media screen and (max-width: 1024px) {
+      width: 100%;
+      right: 50%;
+      top: -5%;
+      transform: translate(50%, 50%);
+    }
+  }
+  & > .pop_up.on_hidden {
+    display: none;
   }
 }
 

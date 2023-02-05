@@ -8,46 +8,31 @@
         <form action="<?= BASE_URL; ?>/mahasiswa/insert" class="form_insert" method="post">
           <div class="mb-3 flex items-center">
             <div class="input_group">
-              <input type="text" class="form_control" name="edit_nama" id="edit_nama" placeholder=" ">
-              <label for="edit_nama" class="place_label">Nama</label>
+              <input type="text" class="form_control" name="nama" id="nama" placeholder=" ">
+              <label for="nama" class="place_label">Nama</label>
             </div>
           </div>
           <div class="mb-3 flex items-center">
             <div class="input_group">
-              <input type="text" class="form_control" name="edit_nrp" id="edit_nrp" placeholder=" ">
-              <label for="edit_nrp" class="place_label">NRP</label>
+              <input type="text" class="form_control" name="nrp" id="nrp" placeholder=" ">
+              <label for="nrp" class="place_label">NRP</label>
             </div>
           </div>
           <div class="mb-3 flex items-center">
             <div class="input_group">
-              <input type="email" class="form_control" name="edit_email" id="edit_email" placeholder=" ">
-              <label for="edit_email" class="place_label">Email</label>
+              <input type="email" class="form_control" name="email" id="email" placeholder=" ">
+              <label for="email" class="place_label">Email</label>
             </div>
           </div>
           <div class="mb-3 flex items-center">
-            <div class="input_group">
-              <!-- <input type="text" class="form_control" name="edit_jurusan" id="edit_jurusan" placeholder=" "> -->
-              <select class="form-select appearance-none
-                block
-                w-full
-                px-[25px]
-                py-[15px]
-                text-base
-                font-normal
-                text-gray-700
-                bg-white bg-clip-padding bg-no-repeat
-                border border-solid border-secondary-bg
-                rounded-[.75rem]
-                transition
-                ease-in-out
-                m-0
-                focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" aria-label="Default select example">
-                <!-- <option selected>Open this select menu</option> -->
-                <option value="1">One</option>
-                <option value="2">Two</option>
-                <option value="3">Three</option>
-              </select>
-              <label for="edit_jurusan" class="place_label form-label select-label">Jurusan</label>
+            <div class="input_group pop_up_wrapper">
+              <input type="text" class="form_control_search" name="jurusan" id="jurusan" placeholder=" ">
+              <label for="jurusan" class="place_label">Jurusan</label>
+              <div class="pop_up on_hidden">
+                <div class="pop_up_header">
+                  <div class="pop_up_title">Hasil Pencarian</div>
+                </div>
+              </div>
             </div>
           </div>
           <div class="mb-3 flex items-center">
