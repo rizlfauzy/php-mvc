@@ -28,9 +28,21 @@
             <div class="input_group pop_up_wrapper">
               <input type="text" class="form_control_search" name="jurusan" id="jurusan" placeholder=" ">
               <label for="jurusan" class="place_label">Jurusan</label>
+              <button type="button" class="card_btn_pass btn_dropdown">
+                <i class="bi bi-caret-up"></i>
+              </button>
               <div class="pop_up on_hidden">
                 <div class="pop_up_header">
                   <div class="pop_up_title">Hasil Pencarian</div>
+                </div>
+                <div class="pop_up_body">
+                  <ul class="bg-white rounded-lg border border-gray-200 text-tertiary-text">
+                    <li class="px-6 py-2 border-b border-gray-200 w-full cursor-pointer hover:bg-secondary-bg rounded-t-lg">An item</li>
+                    <li class="px-6 py-2 border-b border-gray-200 w-full cursor-pointer">A second item</li>
+                    <li class="px-6 py-2 border-b border-gray-200 w-full cursor-pointer">A third item</li>
+                    <li class="px-6 py-2 border-b border-gray-200 w-full cursor-pointer">A fourth item</li>
+                    <li class="px-6 py-2 w-full rounded-b-lg">And a fifth one</li>
+                  </ul>
                 </div>
               </div>
             </div>

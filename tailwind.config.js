@@ -18,7 +18,7 @@ module.exports = {
         "secondary-bg": "#f7b359",
         "secondary-text": "#e7cf8d",
         "tertiary-bg": "#f0bb86",
-        "tertiary-text": "#ffffff",
+        "tertiary-text": "#949494",
       },
       fontSize: {
         "2xs": "0.5rem",

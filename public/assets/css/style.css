@@ -80,7 +80,10 @@ body {
   line-height: 1.5;
   color: #949494;
 }
-.input_group > :is(.form_control:not(:placeholder-shown), .form_control:focus, .form_control_search:not(:placeholder-shown), .form_control_search:focus) + .place_label {
+.input_group > :is(.form_control:not(:placeholder-shown),
+.form_control:focus,
+.form_control_search:not(:placeholder-shown),
+.form_control_search:focus) + .place_label {
   top: 20%;
   font-style: normal;
   font-weight: 400;
@@ -95,8 +98,14 @@ body {
   line-height: 1.5;
   color: #949494;
 }
-.input_group tertiary_text_color .card_btn_pass.active .bi::before {
+.input_group .card_btn_pass .bi {
+  color: #cc7000;
+}
+.input_group .card_btn_pass.active .bi::before {
   content: "\f33f";
+}
+.input_group .card_btn_pass.clicked .bi::before {
+  content: "\f22c";
 }
 
 .form_control {
@@ -148,8 +157,8 @@ body {
   z-index: 998;
   position: absolute;
   left: 50%;
-  top: 55%;
-  transform: translate(-50%, 55%);
+  top: 25%;
+  transform: translate(-50%, 25%);
   width: 300px;
   background-color: #ffe3ab;
   @apply dark:bg-slate-800;
@@ -216,19 +225,14 @@ body {
 }
 
 .modal_box {
-  display: none;
-  /* Hidden by default */
-  position: fixed;
-  /* Stay in place */
-  z-index: 9999;
-  /* Sit on top */
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 9999; /* Sit on top */
   left: 0;
   top: 0;
-  width: 100%;
-  /* Full width */
+  width: 100%; /* Full width */
   height: 100vh;
-  overflow: auto;
-  /* Enable scroll if needed */
+  overflow: auto; /* Enable scroll if needed */
   background-color: rgba(94, 94, 94, 0.5);
   @apply dark:bg-[rgba(15,15,15,0.7)];
   padding-top: 50px;
@@ -250,10 +254,8 @@ body {
 .modal_box .modal_content {
   @apply bg-white dark:bg-slate-700;
   border-radius: 10px;
-  margin: 5% auto 15% auto;
-  /* 5% from the top, 15% from the bottom and centered */
-  max-width: 400px;
-  /* Could be more or less, depending on screen size */
+  margin: 5% auto 15% auto; /* 5% from the top, 15% from the bottom and centered */
+  max-width: 400px; /* Could be more or less, depending on screen size */
   border: 0 solid #f7b359;
 }
 .modal_box .modal_content .modal_container {

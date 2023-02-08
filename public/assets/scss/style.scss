@@ -105,20 +105,47 @@ body {
     @include formatText(500, $font_very_small, 1.5, $tertiary_text_color);
     &.label_modal {
       left: 10px;
-      @include formatText(500, $font_very_very_very_small + 0.25, 1.5, $tertiary_text_color);
+      @include formatText(
+        500,
+        $font_very_very_very_small + 0.25,
+        1.5,
+        $tertiary_text_color
+      );
     }
   }
-  & > :is(.form_control:not(:placeholder-shown), .form_control:focus, .form_control_search:not(:placeholder-shown), .form_control_search:focus) + .place_label {
+  &
+    > :is(
+      .form_control:not(:placeholder-shown),
+      .form_control:focus,
+      .form_control_search:not(:placeholder-shown),
+      .form_control_search:focus
+    )
+    + .place_label {
     top: 20%;
     @include formatText(400, $font_very_very_small, 1.5, $tertiary_text_color);
   }
-  & > :is(.form_control:not(:placeholder-shown), .form_control:focus) + .place_label.label_modal {
-    @include formatText(400, $font_very_very_very_small, 1.5, $tertiary_text_color);
+  &
+    > :is(.form_control:not(:placeholder-shown), .form_control:focus)
+    + .place_label.label_modal {
+    @include formatText(
+      400,
+      $font_very_very_very_small,
+      1.5,
+      $tertiary_text_color
+    );
   }
-  tertiary_text_color .card_btn_pass {
+  .card_btn_pass {
+    .bi{
+      color: $primary_bg_color;
+    }
     &.active {
       .bi::before {
         content: "\F33F";
+      }
+    }
+    &.clicked {
+      .bi::before {
+        content: "\F22C";
       }
     }
   }
@@ -168,8 +195,8 @@ body {
     z-index: 998;
     position: absolute;
     left: 50%;
-    top: 55%;
-    transform: translate(-50%, 55%);
+    top: 25%;
+    transform: translate(-50%, 25%);
     width: 300px;
     background-color: $primary_text_color;
     @apply dark:bg-slate-800;
