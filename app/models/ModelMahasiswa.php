@@ -18,8 +18,9 @@ class ModelMahasiswa
     }
   }
 
-  public function getMahasiswaById($id){
+  public function getMahasiswaById($id = ""){
     try {
+      if (empty($id)) throw new Exception("id tidak ada");
       $this->db->query('SELECT  "id", "name", "email", "nrp", "jurusan" FROM '.$this->table.' WHERE id=:id;');
       $this->db->bind("id",$id);
       return $this->db->single();

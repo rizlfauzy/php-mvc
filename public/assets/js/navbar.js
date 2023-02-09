@@ -1,6 +1,6 @@
 const hambuger_btn = document.querySelector("#hamburger"),
   header = document.querySelector("header"),
-  { base_url } = document.body.dataset;
+  { url } = document.body.dataset;
 
 function addClass(e, classes) {
   e.classList && e.classList.add(...classes.split(" "));
@@ -18,6 +18,18 @@ function call_data({ url, method, body }) {
     headers: {
       "Content-Type": "application/json",
     },
+  }).then(async (res) => {
+    const response_json = await res.json();
+    if (res.status === 302) window.location.reload();
+    if (res.ok) return response_json;
+    return response_json;
+  });
+}
+
+function get_data({ url }) {
+  return fetch(url, {
+    method: "GET",
+    mode: "cors",
   }).then(async (res) => {
     const response_json = await res.json();
     if (res.status === 302) window.location.reload();

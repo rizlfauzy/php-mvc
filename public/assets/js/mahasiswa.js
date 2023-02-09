@@ -26,7 +26,7 @@ btn_dropdown.addEventListener("click", function (e) {
   }
 });
 
-input_jurusan.addEventListener("input", function (e) {
+input_jurusan.addEventListener("input", async function (e) {
   const value = this.value;
   if (value.length < 1) {
     addClass(pop_up, "on_hidden");
@@ -37,4 +37,15 @@ input_jurusan.addEventListener("input", function (e) {
   addClass(pop_up, "on_pop");
   removeClass(pop_up, "on_hidden");
   addClass(btn_dropdown, "clicked");
+  try {
+    const {
+      error: error_jurusan,
+      message: message_jurusan,
+      data: data_jurusan,
+    } = await get_data({ url: url + "/mahasiswa/get_jurusan_by_name/"+value });
+    if (error_jurusan) throw new Error(message_jurusan);
+    console.log(data_jurusan);
+  } catch (e) {
+    alert(e.message);
+  }
 });

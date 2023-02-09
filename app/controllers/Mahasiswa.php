@@ -1,22 +1,61 @@
 <?php
 
-class Mahasiswa extends Controller {
-    public function index(){
-        $data["title"] = "Mahasiswa | Index";
-        $data["mahasiswa"] = true;
-        $data["list_mahasiswa"] = $this->model("ModelMahasiswa")->getListMahasiswa();
-        $this->view("templates/header",$data);
-        $this->view("modals/modal_insert");
-        $this->view("mahasiswa/index",$data);
-        $this->view("templates/footer");
-    }
+class Mahasiswa extends Controller
+{
+  private $model_mahasiswa,
+    $model_jurusan;
 
-    public function detail($id){
-        $data["title"] = "Mahasiswa | Detail";
-        $data["mahasiswa"] = true;
-        $data["mhs"] = $this->model("ModelMahasiswa")->getMahasiswaById($id);
-        $this->view("templates/header",$data);
-        $this->view("mahasiswa/detail",$data);
-        $this->view("templates/footer");
+  public function __construct()
+  {
+    $this->model_mahasiswa = $this->model("ModelMahasiswa");
+    $this->model_jurusan = $this->model("ModelJurusan");
+  }
+
+  public function index()
+  {
+    $data["title"] = "Mahasiswa | Index";
+    $data["mahasiswa"] = true;
+    $data["list_mahasiswa"] = $this->model_mahasiswa->getListMahasiswa();
+    $this->view("templates/header", $data);
+    $this->view("modals/modal_insert");
+    $this->view("mahasiswa/index", $data);
+    $this->view("templates/footer");
+  }
+
+  public function detail($id = "")
+  {
+    $data["title"] = "Mahasiswa | Detail";
+    $data["mahasiswa"] = true;
+    $data["mhs"] = $this->model_mahasiswa->getMahasiswaById($id);
+    $this->view("templates/header", $data);
+    $this->view("mahasiswa/detail", $data);
+    $this->view("templates/footer");
+  }
+
+  public function get_list_jurusan()
+  {
+    try {
+      echo json_encode([
+        "error" => false,
+        "message" => "Data jurusan berhasil didapatkan",
+        "data" => $this->model_jurusan->getListJurusan()
+      ]);
+    } catch (\Exception $e) {
+      echo json_encode(["error" => true, "message" => $e->getMessage()]);
     }
+  }
+
+  public function get_jurusan_by_name($name = "")
+  {
+    try {
+      if (empty($name)) throw new Exception("Jurusan tidak ada");
+      echo json_encode([
+        "error" => false,
+        "message" => "Data jurusan berhasil didapatkan",
+        "data" => $this->model_jurusan->getJurusanByName($name)
+      ]);
+    } catch (\Exception $e) {
+      echo json_encode(["error" => true, "message" => $e->getMessage()]);
+    }
+  }
 }
