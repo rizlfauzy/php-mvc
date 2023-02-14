@@ -48,11 +48,15 @@ class Mahasiswa extends Controller
   public function get_jurusan_by_name($name = "")
   {
     try {
-      if (empty($name)) throw new Exception("Jurusan tidak ada");
+      // echo json_encode($_GET);
+      // if (empty($name)) throw new Exception("Jurusan tidak ada");
+      $url = rtrim($_GET["url"], "/");
+      $url = explode("/", $url);
+      $jurusan = $url[2] ?? "";
       echo json_encode([
         "error" => false,
         "message" => "Data jurusan berhasil didapatkan",
-        "data" => $this->model_jurusan->getJurusanByName($name)
+        "data" => $this->model_jurusan->getJurusanByName($jurusan)
       ]);
     } catch (\Exception $e) {
       echo json_encode(["error" => true, "message" => $e->getMessage()]);

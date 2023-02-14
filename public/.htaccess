@@ -4,3 +4,11 @@ RewriteEngine On
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteRule ^(.*)$ index.php?url=$1 [L]
+# remove spaces from start or after /
+RewriteRule ^(.*/|)[\s%20]+(.+)$ $1$2 [L]
+
+# remove spaces from end or before /
+RewriteRule ^(.+?)[\s%20]+(/.*|)$ $1$2 [L]
+
+# replace spaces by - in between
+RewriteRule ^([^\s%20]*)(?:\s|%20)+(.*)$ $1-$2 [L,R]
