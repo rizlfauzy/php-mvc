@@ -57,8 +57,11 @@ input_jurusan.addEventListener("input", async function (e) {
   }
 });
 
-list_jurusan.addEventListener("click",function (e) {  
+list_jurusan.addEventListener("click",function (e) {
   if (e.target.classList.contains("jurusan")) {
     input_jurusan.value = e.target.innerHTML
+    addClass(pop_up, "on_hidden");
+    removeClass(pop_up, "on_pop");
+    removeClass(btn_dropdown, "clicked");
   }
 })
