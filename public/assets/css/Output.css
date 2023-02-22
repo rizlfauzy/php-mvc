@@ -1709,14 +1709,19 @@ table .tr_show td {
   border-width: 0px;
 }
 
+.hover\:bg-secondary-bg:hover{
+  --tw-bg-opacity: 1;
+  background-color: rgb(247 179 89 / var(--tw-bg-opacity));
+}
+
 .hover\:bg-gray-200:hover{
   --tw-bg-opacity: 1;
   background-color: rgb(229 231 235 / var(--tw-bg-opacity));
 }
 
-.hover\:bg-secondary-bg:hover{
-  --tw-bg-opacity: 1;
-  background-color: rgb(247 179 89 / var(--tw-bg-opacity));
+.hover\:text-white:hover{
+  --tw-text-opacity: 1;
+  color: rgb(255 255 255 / var(--tw-text-opacity));
 }
 
 .group:hover .group-hover\:text-slate-800{

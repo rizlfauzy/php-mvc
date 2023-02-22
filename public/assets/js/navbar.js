@@ -10,14 +10,14 @@ function removeClass(e, classes) {
   e.classList && e.classList.remove(...classes.split(" "));
 }
 
-function call_data({ url, method, body }) {
+function post_data({ url, method, body }) {
   return fetch(url, {
     method,
     mode: "cors",
-    body: JSON.stringify(body),
-    headers: {
-      "Content-Type": "application/json",
-    },
+    body,
+    // headers: {
+    //   "Content-Type": "application/json",
+    // },
   }).then(async (res) => {
     const response_json = await res.json();
     if (res.status === 302) window.location.reload();

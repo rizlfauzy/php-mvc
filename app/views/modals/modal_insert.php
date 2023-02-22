@@ -37,11 +37,6 @@
                 </div>
                 <div class="pop_up_body">
                   <ul class="bg-white rounded-lg border border-gray-200 text-tertiary-text" id="list_jurusan">
-                    <li class="px-6 py-2 border-b border-gray-200 w-full cursor-pointer hover:bg-secondary-bg rounded-t-lg">An item</li>
-                    <li class="px-6 py-2 border-b border-gray-200 w-full cursor-pointer">A second item</li>
-                    <li class="px-6 py-2 border-b border-gray-200 w-full cursor-pointer">A third item</li>
-                    <li class="px-6 py-2 border-b border-gray-200 w-full cursor-pointer">A fourth item</li>
-                    <li class="px-6 py-2 w-full rounded-b-lg">And a fifth one</li>
                   </ul>
                 </div>
               </div>
