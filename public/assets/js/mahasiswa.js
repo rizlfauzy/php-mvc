@@ -68,8 +68,8 @@ form_insert.addEventListener("submit", async function (e) {
     removeClass(pop_up, "on_pop");
     removeClass(btn_dropdown, "clicked");
   } catch (e) {
-    // alert(e.message);
-    console.log(e.message);
+    alert(e.message);
+    // console.log(e.message);
   }
 });
 
