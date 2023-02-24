@@ -2,11 +2,18 @@ const form_insert = document.querySelector(".form_insert"),
   input_jurusan = document.querySelector("#jurusan"),
   pop_up = document.querySelector(".pop_up"),
   btn_dropdown = document.querySelector(".btn_dropdown"),
-  list_jurusan = document.querySelector("#list_jurusan");
+  list_jurusan = document.querySelector("#list_jurusan"),
+  tbody_mahasiswa = document.querySelector("#tbody_mahasiswa");
 
 async function showListJurusan(value = "") {
   try {
-    const { error: error_jurusan, message: message_jurusan, data: data_jurusan } = await get_data({ url: url + "/mahasiswa/get_jurusan_by_name/"+value });
+    const {
+      error: error_jurusan,
+      message: message_jurusan,
+      data: data_jurusan,
+    } = await get_data({
+      url: url + "/mahasiswa/get_jurusan_by_name/" + value,
+    });
     if (error_jurusan) throw new Error(message_jurusan);
     list_jurusan.innerHTML =
       data_jurusan.length > 0
@@ -29,11 +36,40 @@ form_insert.addEventListener("submit", async function (e) {
   e.preventDefault();
   try {
     const form_data = new FormData(this);
-    form_data.append('umur',21)
-    const res = await post_data({ url: url + "/mahasiswa/insert", method: "post", body: form_data });
-    console.log(res);
+    const {
+      error: error_insert,
+      message: message_insert,
+      data: list_mahasiswa,
+    } = await post_data({
+      url: url + "/mahasiswa/insert",
+      method: "post",
+      body: form_data,
+    });
+    if (error_insert) throw new Error(message_insert);
+    tbody_mahasiswa.innerHTML = list_mahasiswa.map((item, i) => {
+      return /*html*/ `
+        <tr class="bg-gray-100 hover:bg-gray-200 border-b last:border-0 transition duration-300 ease-in-out">
+                      <td class="md:text-md text-sm leading-[1.25] py-2 px-3 text-dark text-center">
+                        ${i+1}
+                      </td>
+                      <td class="md:text-sm text-2xs leading-[1.25] py-2 px-3 text-dark text-center">
+                        ${item.name}
+                      </td>
+                      <td class="md:text-sm text-2xs leading-[1.25] py-2 px-3 text-dark text-center">
+                        <a class="link link_btn link_primary" href="${url}/mahasiswa/detail/${item.id}">
+                          Detail
+                        </a>
+                      </td>
+                    </tr>
+      `;
+    }).join('');
+    alert(message_insert);
+    addClass(pop_up, "on_hidden");
+    removeClass(pop_up, "on_pop");
+    removeClass(btn_dropdown, "clicked");
   } catch (e) {
-    alert(e.message);
+    // alert(e.message);
+    console.log(e.message);
   }
 });
 
@@ -42,7 +78,7 @@ btn_dropdown.addEventListener("click", async function (e) {
     addClass(pop_up, "on_pop");
     removeClass(pop_up, "on_hidden");
     addClass(btn_dropdown, "clicked");
-    await showListJurusan()
+    await showListJurusan();
   } else {
     addClass(pop_up, "on_hidden");
     removeClass(pop_up, "on_pop");
@@ -61,7 +97,7 @@ input_jurusan.addEventListener("input", async function (e) {
   addClass(pop_up, "on_pop");
   removeClass(pop_up, "on_hidden");
   addClass(btn_dropdown, "clicked");
-  await showListJurusan(value)
+  await showListJurusan(value);
 });
 
 list_jurusan.addEventListener("click", function (e) {

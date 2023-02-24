@@ -64,10 +64,18 @@ class Mahasiswa extends Controller
   public function insert(){
     try {
       $body = $_POST;
+      if (!filter_var($body['email'], FILTER_VALIDATE_EMAIL)) throw new Exception("Email Tidak Valid !!!");
+      $isEmailReady = $this->model_mahasiswa->isEmailReady($body['email']);
+      if ($isEmailReady) throw new Exception("Email sudah digunakan !!!");
+      $isNrpReady = $this->model_mahasiswa->isNrpReady($body['nrp']);
+      if ($isNrpReady) throw new Exception("NRP sudah digunakan !!!");
+      if (strlen($body['nrp']) < 12) throw new Exception("NRP kurang dari 12 angka !!!");
+      $insertMahasiswa = $this->model_mahasiswa->insertMahasiswa($body);
+      if ($insertMahasiswa < 1) throw new Exception("Data gagal terinput");
       echo json_encode([
         "error" => false,
         "message" => "Mahasiswa berhasil ditambahkan",
-        "data" => $body
+        "data" => $this->model_mahasiswa->getListMahasiswa()
       ]);
     } catch (\Exception $e) {
       echo json_encode(["error" => true, "message" => $e->getMessage()]);

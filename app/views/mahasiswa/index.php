@@ -28,7 +28,7 @@
                     </th>
                   </tr>
                 </thead>
-                <tbody>
+                <tbody id="tbody_mahasiswa">
                   <?php foreach ($data["list_mahasiswa"] as $key => $mhs) : ?>
                     <tr class="bg-gray-100 hover:bg-gray-200 border-b last:border-0 transition duration-300 ease-in-out">
                       <td class="md:text-md text-sm leading-[1.25] py-2 px-3 text-dark text-center">
