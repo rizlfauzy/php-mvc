@@ -13,17 +13,17 @@
         <nav id="nav-menu" class="hidden absolute py-5 bg-gray-200 shadow-lg rounded-lg max-w-[250px] w-full right-4 top-full lg:block lg:static lg:bg-transparent lg:max-w-full lg:shadow-none lg:rounded-none dark:bg-dark dark:shadow-slate-500 lg:dark:bg-transparent">
           <ul class="block lg:flex nav-list">
             <li class="group md:hover:bg-gray-300 lg:hover:bg-transparent">
-              <a href="<?= BASE_URL ?>/home/" class="text-base text-dark mx-8 flex py-2 group-hover:text-slate-800 nav-link <?= array_key_exists("home",$data) ? "active" : "" ?>">
+              <a href="<?= BASE_URL ?>/home/" class="text-base text-dark mx-8 flex py-2 group-hover:text-slate-800 nav-link <?= array_key_exists("home", $data) ? "active" : "" ?>">
                 Home
               </a>
             </li>
             <li class="group md:hover:bg-gray-300 lg:hover:bg-transparent">
-              <a href="<?= BASE_URL ?>/mahasiswa/" class="text-base text-dark mx-8 flex py-2 group-hover:text-slate-800 nav-link <?= array_key_exists("mahasiswa",$data) ? "active" : "" ?>">
+              <a href="<?= BASE_URL ?>/mahasiswa/" class="text-base text-dark mx-8 flex py-2 group-hover:text-slate-800 nav-link <?= array_key_exists("mahasiswa", $data) ? "active" : "" ?>">
                 Mahasiswa
               </a>
             </li>
             <li class="group md:hover:bg-gray-300 lg:hover:bg-transparent">
-              <a href="<?= BASE_URL ?>/about/" class="text-base text-dark mx-8 flex py-2 group-hover:text-slate-800 nav-link <?= array_key_exists("about",$data) ? "active" : "" ?>">
+              <a href="<?= BASE_URL ?>/about/" class="text-base text-dark mx-8 flex py-2 group-hover:text-slate-800 nav-link <?= array_key_exists("about", $data) ? "active" : "" ?>">
                 About
               </a>
             </li>
@@ -33,4 +33,7 @@
     </div>
   </div>
 </header>
+<div class="for_alert">
+  <?php Flasher::flash() ?>
+</div>
 <script src="<?= BASE_URL ?>/assets/js/navbar.js"></script>

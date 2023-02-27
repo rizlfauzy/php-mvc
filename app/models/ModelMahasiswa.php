@@ -65,4 +65,16 @@ class ModelMahasiswa
       die($e->getMessage());
     }
   }
+
+  public function deleteMahasiswa($id = ""){
+    try {
+      if (empty($id)) throw new Exception("id tidak ada");
+      $this->db->query('DELETE FROM '.$this->table.' WHERE id=:id;');
+      $this->db->bind("id",$id);
+      $this->db->execute();
+      return $this->db->rowCount();
+    } catch (\Exception $e) {
+      die($e->getMessage());
+    }
+  }
 }

@@ -39,6 +39,18 @@ body {
   @apply -rotate-45;
 }
 
+.for_alert {
+  position: fixed;
+  top: 61px;
+  right: 17%;
+  left: 17%;
+  margin-bottom: 10px;
+  opacity: 1;
+  z-index: 99999;
+  list-style: none;
+  text-align: center;
+}
+
 .input_group {
   position: relative;
   display: flex;
@@ -212,14 +224,6 @@ body {
 .pop_up_wrapper > .pop_up.on_pop .pop_up_button button {
   width: 100%;
 }
-@media screen and (max-width: 1024px) {
-  .pop_up_wrapper > .pop_up.on_pop {
-    width: 100%;
-    right: 50%;
-    top: -5%;
-    transform: translate(50%, 50%);
-  }
-}
 .pop_up_wrapper > .pop_up.on_hidden {
   display: none;
 }
@@ -332,10 +336,10 @@ body {
   color: #ffe3ab;
 }
 .btn.btn_reset {
-  @apply bg-red-500 hover:bg-red-600;
+  @apply bg-red-700 hover:bg-red-400 px-4;
   font-style: normal;
   font-weight: 600;
-  font-size: 1.2rem;
+  font-size: 1rem;
   line-height: 1.5;
   color: #ffe3ab;
 }
@@ -385,6 +389,17 @@ a.link_primary {
 a.link_primary:hover {
   background-color: #f7b359;
   border-color: #f7b359;
+}
+a.link_delete {
+  @apply bg-red-700 border-red-700;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 1rem;
+  line-height: 1.5;
+  color: #ffe3ab;
+}
+a.link_delete:hover {
+  @apply bg-red-400 border-red-400;
 }
 
 table .tr_show {

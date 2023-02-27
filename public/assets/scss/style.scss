@@ -74,6 +74,20 @@ body {
   }
 }
 
+// alert styles
+.for_alert {
+  position: fixed;
+  top: 61px;
+  right: 17%;
+  left: 17%;
+  margin-bottom: 10px;
+  opacity: 1;
+  z-index: 99999;
+  list-style: none;
+  text-align: center;
+}
+
+
 // form styles
 .input_group {
   position: relative;
@@ -251,12 +265,12 @@ body {
         width: 100%;
       }
     }
-    @media screen and (max-width: 1024px) {
-      width: 100%;
-      right: 50%;
-      top: -5%;
-      transform: translate(50%, 50%);
-    }
+    // @media screen and (max-width: 1024px) {
+    //   width: 100%;
+    //   right: 50%;
+    //   top: -5%;
+    //   transform: translate(50%, 50%);
+    // }
   }
   & > .pop_up.on_hidden {
     display: none;
@@ -352,8 +366,8 @@ body {
     @include formatText(600, $font_medium, 1.5, $primary_text_color);
   }
   &.btn_reset {
-    @apply bg-red-500 hover:bg-red-600;
-    @include formatText(600, $font_medium, 1.5, $primary_text_color);
+    @apply bg-red-700 hover:bg-red-400 px-4;
+    @include formatText(600, $font_small, 1.5, $primary_text_color);
   }
   &.btn_cancel {
     @apply bg-gray-500 hover:bg-gray-600;
@@ -388,6 +402,17 @@ a.link {
     &:hover {
       background-color: $secondary_bg_color;
       border-color: $secondary_bg_color;
+    }
+  }
+  &_delete {
+    // background-color: $primary_bg_color;
+    // border-color: $primary_bg_color;
+    @apply bg-red-700 border-red-700;
+    @include formatText(600, $font_small, 1.5, $primary_text_color);
+    &:hover {
+      // background-color: $secondary_bg_color;
+      // border-color: $secondary_bg_color;
+      @apply bg-red-400 border-red-400;
     }
   }
 }

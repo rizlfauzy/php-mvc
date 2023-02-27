@@ -41,6 +41,9 @@
                         <a class="link link_btn link_primary" href="<?= BASE_URL ?>/mahasiswa/detail/<?= $mhs->id ?>">
                           Detail
                         </a>
+                        <button type="button" class="btn btn_reset btn_delete_mhs" data-id="<?= $mhs->id ?>">
+                          Delete
+                        </button>
                       </td>
                     </tr>
                   <?php endforeach ?>

@@ -81,4 +81,18 @@ class Mahasiswa extends Controller
       echo json_encode(["error" => true, "message" => $e->getMessage()]);
     }
   }
+
+  public function delete($id = ""){
+    try {
+      $deleteMahasiswa = $this->model_mahasiswa->deleteMahasiswa($id);
+      if ($deleteMahasiswa < 1) throw new Exception("Mahasiswa gagal terhapus");
+      echo json_encode([
+        "error" => false,
+        "message" => "Mahasiswa berhasil dihapus",
+        "data" => $this->model_mahasiswa->getListMahasiswa()
+      ]);
+    } catch (\Exception $e) {
+      echo json_encode(["error" => true, "message" => $e->getMessage()]);
+    }
+  }
 }
