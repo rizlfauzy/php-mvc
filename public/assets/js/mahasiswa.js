@@ -3,12 +3,15 @@ const form_insert = document.querySelector(".form_insert"),
   pop_up = document.querySelector(".pop_up"),
   btn_dropdown = document.querySelector(".btn_dropdown"),
   list_jurusan = document.querySelector("#list_jurusan"),
+  btn_tambah = document.querySelector("#btn_tambah"),
   tbody_mahasiswa = document.querySelector("#tbody_mahasiswa");
 
 function templateTable(element, items) {
-  element.innerHTML = items
-    .map((item, i) => {
-      return /*html*/ `
+  element.innerHTML =
+    items.length > 0
+      ? items
+          .map((item, i) => {
+            return /*html*/ `
                     <tr class="bg-gray-100 hover:bg-gray-200 border-b last:border-0 transition duration-300 ease-in-out">
                       <td class="md:text-md text-sm leading-[1.25] py-2 px-3 text-dark text-center">
                         ${i + 1}
@@ -18,10 +21,15 @@ function templateTable(element, items) {
                       </td>
                       <td class="md:text-sm text-2xs leading-[1.25] py-2 px-3 text-dark text-center">
                         <a class="link link_btn link_primary" href="${url}/mahasiswa/detail/${
-        item.id
-      }">
+              item.id
+            }">
                           Detail
                         </a>
+                        <button type="button" class="btn btn_warning btn_edit_mhs" data-id="${
+                          item.id
+                        }"  onclick="modal_insert.style.display = 'block'">
+                          Ubah
+                        </button>
                         <button type="button" class="btn btn_reset btn_delete_mhs" data-id="${
                           item.id
                         }">
@@ -30,8 +38,15 @@ function templateTable(element, items) {
                       </td>
                     </tr>
       `;
-    })
-    .join("");
+          })
+          .join("")
+      : /*html*/ `
+                  <tr class="bg-gray-100 hover:bg-gray-200 border-b last:border-0 transition duration-300 ease-in-out">
+                    <td class="md:text-lg text-md leading-[1.25] py-6 px-12 text-dark text-center" colspan="3">
+                      Mahasiswa tidak tersedia
+                    </td>
+                  </tr>
+    `;
 }
 
 async function showListJurusan(value = "") {
@@ -62,6 +77,13 @@ async function showListJurusan(value = "") {
   }
 }
 
+btn_tambah.addEventListener("click", function (e) {
+  document.querySelector("#modal_title").innerHTML = "Tambah Data";
+  document.querySelector("#btn_submit").innerHTML = "Tambah";
+  removeClass(form_insert, "form_update");
+  addClass(form_insert, "form_insert");
+});
+
 form_insert.addEventListener("submit", async function (e) {
   e.preventDefault();
   try {
@@ -81,8 +103,9 @@ form_insert.addEventListener("submit", async function (e) {
     templateAlert(message_insert, "green", "Success !!!");
     addClass(pop_up, "on_hidden");
     removeClass(pop_up, "on_pop");
-    removeClass(btn_dropdown, "clicked");
+    removeClass(btn_dropdown, "clicked")
     modal_insert.style.display = "none";
+    this.reset();
   } catch (e) {
     // alert(e.message);
     templateAlert(e.message, "red", "Error !!!");
@@ -90,30 +113,30 @@ form_insert.addEventListener("submit", async function (e) {
   }
 });
 
-btn_dropdown.addEventListener("click", async function (e) {
-  if (pop_up.classList.contains("on_hidden")) {
-    addClass(pop_up, "on_pop");
-    removeClass(pop_up, "on_hidden");
-    addClass(btn_dropdown, "clicked");
-    await showListJurusan();
-  } else {
-    addClass(pop_up, "on_hidden");
-    removeClass(pop_up, "on_pop");
-    removeClass(btn_dropdown, "clicked");
-  }
-});
+  btn_dropdown.addEventListener("click", async function (e) {
+    if (pop_up.classList.contains("on_hidden")) {
+      addClass(pop_up, "on_pop");
+      removeClass(pop_up, "on_hidden");
+      addClass(btn_dropdown, "clicked");
+      await showListJurusan();
+    } else {
+      addClass(pop_up, "on_hidden");
+      removeClass(pop_up, "on_pop");
+      removeClass(btn_dropdown, "clicked");
+    }
+  })
 
 input_jurusan.addEventListener("input", async function (e) {
   const value = this.value;
   if (value.length < 1) {
     addClass(pop_up, "on_hidden");
     removeClass(pop_up, "on_pop");
-    removeClass(btn_dropdown, "clicked");
+    removeClass(btn_dropdown, "clicked")
     return;
   }
   addClass(pop_up, "on_pop");
   removeClass(pop_up, "on_hidden");
-  addClass(btn_dropdown, "clicked");
+  addClass(btn_dropdown, "clicked")
   await showListJurusan(value);
 });
 
@@ -122,7 +145,7 @@ list_jurusan.addEventListener("click", function (e) {
     input_jurusan.value = e.target.innerHTML;
     addClass(pop_up, "on_hidden");
     removeClass(pop_up, "on_pop");
-    removeClass(btn_dropdown, "clicked");
+    removeClass(btn_dropdown, "clicked")
   }
 });
 
@@ -133,11 +156,12 @@ tbody_mahasiswa.addEventListener("click", async function (e) {
       text: "Sekali dihapus data tidak akan bisa kembali lagi !",
       icon: "warning",
       showDenyButton: true,
-      width:"20rem",
+      width: "20rem",
       confirmButtonText: "Hapus",
       denyButtonText: `Jangan Hapus`,
     });
-    if (result_swal.isDenied) return swalAlert("Mahasiswa tidak dihapus","error")
+    if (result_swal.isDenied || result_swal.isDismissed)
+      return swalAlert("Mahasiswa tidak dihapus", "error");
     try {
       const { id } = e.target.dataset;
       const {
@@ -146,10 +170,31 @@ tbody_mahasiswa.addEventListener("click", async function (e) {
         data: list_mahasiswa,
       } = await get_data({ url: url + "/mahasiswa/delete/" + id });
       if (error_delete) throw new Error(message_delete);
-      swalAlert(message_delete,"success")
+      swalAlert(message_delete, "success");
       templateTable(tbody_mahasiswa, list_mahasiswa);
     } catch (e) {
-      swalAlert(e.message,"error")
+      swalAlert(e.message, "error");
+    }
+  } else if (e.target.classList.contains("btn_edit_mhs")) {
+    try {
+      const { id } = e.target.dataset;
+      document.querySelector("#modal_title").innerHTML = "Ubah Data";
+      document.querySelector("#btn_submit").innerHTML = "Ubah";
+      removeClass(form_insert, "form_insert");
+      addClass(form_insert, "form_update");
+      const { nama, nrp, email, jurusan } = document.querySelector(".form_update");
+      const {
+        error: error_mhs,
+        message: message_mhs,
+        data: mhs,
+      } = await get_data({ url: url + "/mahasiswa/get_mahasiswa_by_id/" + id });
+      if (error_mhs) throw new Error(message_mhs);
+      nama.value = mhs.name;
+      nrp.value = mhs.nrp;
+      email.value = mhs.email;
+      jurusan.value = mhs.jurusan;
+    } catch (e) {
+      swalAlert(e.message, "error");
     }
   }
 });

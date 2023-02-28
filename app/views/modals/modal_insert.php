@@ -2,7 +2,7 @@
   <span class="modal_close" title="Close Modal" onclick="document.querySelector('#modal_insert').style.display = 'none'">x</span>
   <div class="modal_content">
     <div class="modal_container">
-      <div class="modal_header mb-3">Tambah Data</div>
+      <div class="modal_header mb-3" id="modal_title">Tambah Data</div>
       <hr className="border-b-2 border-primary-bg mb-3">
       <div class="modal_body mt-5">
         <form action="<?= BASE_URL; ?>/mahasiswa/insert" class="form_insert" method="post">
@@ -43,7 +43,7 @@
             </div>
           </div>
           <div class="mb-3 flex items-center">
-            <button class="btn btn_primary w-full" type="submit">Tambah</button>
+            <button class="btn btn_primary w-full" id="btn_submit" type="submit">Tambah</button>
           </div>
         </form>
       </div>

@@ -2,7 +2,7 @@
   <div class="container mx-auto px-6">
     <div class="flex-flex-wrap">
       <div class="max-w-full w-[600px] mx-auto py-3">
-        <button class="btn btn_primary px-5" onclick="modal_insert.style.display = 'block'">Tambah</button>
+        <button class="btn btn_primary px-5"  id="btn_tambah" onclick="modal_insert.style.display = 'block'">Tambah</button>
       </div>
     </div>
     <div class="flex flex-wrap">
@@ -29,7 +29,9 @@
                   </tr>
                 </thead>
                 <tbody id="tbody_mahasiswa">
-                  <?php foreach ($data["list_mahasiswa"] as $key => $mhs) : ?>
+                  <?php
+                  if(count($data["list_mahasiswa"]) > 0) :
+                  foreach ($data["list_mahasiswa"] as $key => $mhs) : ?>
                     <tr class="bg-gray-100 hover:bg-gray-200 border-b last:border-0 transition duration-300 ease-in-out">
                       <td class="md:text-md text-sm leading-[1.25] py-2 px-3 text-dark text-center">
                         <?= $key + 1 ?>
@@ -41,12 +43,24 @@
                         <a class="link link_btn link_primary" href="<?= BASE_URL ?>/mahasiswa/detail/<?= $mhs->id ?>">
                           Detail
                         </a>
+                        <button type="button" class="btn btn_warning btn_edit_mhs" data-id="<?= $mhs->id ?>" onclick="modal_insert.style.display = 'block'">
+                          Ubah
+                        </button>
                         <button type="button" class="btn btn_reset btn_delete_mhs" data-id="<?= $mhs->id ?>">
                           Delete
                         </button>
                       </td>
                     </tr>
-                  <?php endforeach ?>
+                  <?php
+                  endforeach;
+                  else :
+                  ?>
+                  <tr class="bg-gray-100 hover:bg-gray-200 border-b last:border-0 transition duration-300 ease-in-out">
+                    <td class="md:text-lg text-md leading-[1.25] py-6 px-12 text-dark text-center" colspan="3">
+                      Mahasiswa tidak tersedia
+                    </td>
+                  </tr>
+                  <?php endif; ?>
                 </tbody>
               </table>
             </div>

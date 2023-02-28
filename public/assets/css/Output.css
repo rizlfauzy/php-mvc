@@ -983,6 +983,16 @@ video {
   padding-bottom: 1.25rem;
 }
 
+.py-4{
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+}
+
+.px-12{
+  padding-left: 3rem;
+  padding-right: 3rem;
+}
+
 .text-center{
   text-align: center;
 }
@@ -1646,6 +1656,8 @@ body {
 .btn.btn_warning{
   --tw-bg-opacity: 1;
   background-color: rgb(250 204 21 / var(--tw-bg-opacity));
+  padding-left: 1rem;
+  padding-right: 1rem;
 }
 
 .btn.btn_warning:hover{
@@ -1656,7 +1668,7 @@ body {
 .btn.btn_warning {
   font-style: normal;
   font-weight: 600;
-  font-size: 1.2rem;
+  font-size: 1rem;
   line-height: 1.5;
   color: #ffe3ab;
 }
@@ -1784,19 +1796,24 @@ table .tr_show td {
   border-width: 0px;
 }
 
+.hover\:bg-yellow-500:hover{
+  --tw-bg-opacity: 1;
+  background-color: rgb(234 179 8 / var(--tw-bg-opacity));
+}
+
 .hover\:bg-red-400:hover{
   --tw-bg-opacity: 1;
   background-color: rgb(248 113 113 / var(--tw-bg-opacity));
 }
 
-.hover\:bg-secondary-bg:hover{
-  --tw-bg-opacity: 1;
-  background-color: rgb(247 179 89 / var(--tw-bg-opacity));
-}
-
 .hover\:bg-gray-200:hover{
   --tw-bg-opacity: 1;
   background-color: rgb(229 231 235 / var(--tw-bg-opacity));
+}
+
+.hover\:bg-secondary-bg:hover{
+  --tw-bg-opacity: 1;
+  background-color: rgb(247 179 89 / var(--tw-bg-opacity));
 }
 
 .hover\:text-white:hover{
@@ -1894,6 +1911,11 @@ table .tr_show td {
   .md\:text-sm{
     font-size: 0.875rem;
     line-height: 1.25rem;
+  }
+
+  .md\:text-lg{
+    font-size: 1.125rem;
+    line-height: 1.75rem;
   }
 
   .md\:hover\:bg-gray-300:hover{

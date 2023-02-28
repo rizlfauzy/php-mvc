@@ -328,10 +328,10 @@ body {
   border-color: #f0bb86;
 }
 .btn.btn_warning {
-  @apply bg-yellow-400 hover:bg-yellow-500;
+  @apply bg-yellow-400 hover:bg-yellow-500 px-4;
   font-style: normal;
   font-weight: 600;
-  font-size: 1.2rem;
+  font-size: 1rem;
   line-height: 1.5;
   color: #ffe3ab;
 }

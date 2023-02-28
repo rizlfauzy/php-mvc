@@ -362,8 +362,8 @@ body {
     }
   }
   &.btn_warning {
-    @apply bg-yellow-400 hover:bg-yellow-500;
-    @include formatText(600, $font_medium, 1.5, $primary_text_color);
+    @apply bg-yellow-400 hover:bg-yellow-500 px-4;
+    @include formatText(600, $font_small, 1.5, $primary_text_color);
   }
   &.btn_reset {
     @apply bg-red-700 hover:bg-red-400 px-4;
