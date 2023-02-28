@@ -18,11 +18,13 @@ function templateTable(element, items) {
                       </td>
                       <td class="md:text-sm text-2xs leading-[1.25] py-2 px-3 text-dark text-center">
                         <a class="link link_btn link_primary" href="${url}/mahasiswa/detail/${
-                          item.id
-                        }">
+        item.id
+      }">
                           Detail
                         </a>
-                        <button type="button" class="btn btn_reset btn_delete_mhs" data-id="${item.id}">
+                        <button type="button" class="btn btn_reset btn_delete_mhs" data-id="${
+                          item.id
+                        }">
                           Delete
                         </button>
                       </td>
@@ -124,18 +126,18 @@ list_jurusan.addEventListener("click", function (e) {
   }
 });
 
-tbody_mahasiswa.addEventListener("click",async function (e) {  
+tbody_mahasiswa.addEventListener("click", async function (e) {
   if (e.target.classList.contains("btn_delete_mhs")) {
     const result_swal = await swal.fire({
       title: "Apa Anda yakin ?",
       text: "Sekali dihapus data tidak akan bisa kembali lagi !",
       icon: "warning",
       showDenyButton: true,
+      width:"20rem",
       confirmButtonText: "Hapus",
       denyButtonText: `Jangan Hapus`,
     });
-    if (result_swal.isDenied)
-      return Swal.fire("Mahasiswa tidak dihapus", "", "info");
+    if (result_swal.isDenied) return swalAlert("Mahasiswa tidak dihapus","error")
     try {
       const { id } = e.target.dataset;
       const {
@@ -144,11 +146,10 @@ tbody_mahasiswa.addEventListener("click",async function (e) {
         data: list_mahasiswa,
       } = await get_data({ url: url + "/mahasiswa/delete/" + id });
       if (error_delete) throw new Error(message_delete);
-      Swal.fire(message_delete, "", "success");
+      swalAlert(message_delete,"success")
       templateTable(tbody_mahasiswa, list_mahasiswa);
     } catch (e) {
-      Swal.fire(e.message, "", "info");
+      swalAlert(e.message,"error")
     }
   }
-})
-
+});

@@ -56,6 +56,22 @@ function templateAlert(message, color, strong_text) {
   `;
 }
 
+function swalAlert(msg,type){
+  Swal.fire({
+    toast: true,
+    showConfirmButton: false,
+    position: 'top-end',
+    text: msg,
+    icon: type,
+    timer: 2000,
+    timerProgressBar: true,
+    didOpen: (toast) => {
+      toast.addEventListener('mouseenter', Swal.stopTimer)
+      toast.addEventListener('mouseleave', Swal.resumeTimer)
+  }
+  });
+}
+
 hambuger_btn.addEventListener("click", function (e) {
   const nav_menu = hambuger_btn.nextElementSibling;
   hambuger_btn.classList.toggle("hamburger-active");
