@@ -6,6 +6,7 @@
       <hr className="border-b-2 border-primary-bg mb-3">
       <div class="modal_body mt-5">
         <form action="<?= BASE_URL; ?>/mahasiswa/insert" class="form_insert" method="post">
+        <input type="hidden" name="id" id="id" value="">
           <div class="mb-3 flex items-center">
             <div class="input_group">
               <input type="text" class="form_control" name="nama" id="nama" placeholder=" ">

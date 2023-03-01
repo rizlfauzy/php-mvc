@@ -61,7 +61,8 @@ class Mahasiswa extends Controller
     }
   }
 
-  public function insert(){
+  public function insert()
+  {
     try {
       $body = $_POST;
       if (!filter_var($body['email'], FILTER_VALIDATE_EMAIL)) throw new Exception("Email Tidak Valid !!!");
@@ -83,7 +84,31 @@ class Mahasiswa extends Controller
     }
   }
 
-  public function delete($id = ""){
+  public function update()
+  {
+    try {
+      $body = $_POST;
+      if (!filter_var($body['email'], FILTER_VALIDATE_EMAIL)) throw new Exception("Email Tidak Valid !!!");
+      $isNrpReady = $this->model_mahasiswa->isNrpReady($body['nrp'], $body['id']);
+      if ($isNrpReady) throw new Exception("NRP sudah digunakan !!!");
+      if (!is_numeric($body['nrp'])) throw new Exception("NRP harus berupa angka");
+      if (strlen($body['nrp']) < 12) throw new Exception("NRP kurang dari 12 angka !!!");
+      $isEmailReady = $this->model_mahasiswa->isEmailReady($body['email'], $body['id']);
+      if ($isEmailReady) throw new Exception("Email sudah digunakan !!!");
+      $updateMahasiswa = $this->model_mahasiswa->updateMahasiswa($body);
+      if ($updateMahasiswa < 1) throw new Exception("Data gagal terinput");
+      echo json_encode([
+        "error" => false,
+        "message" => "Mahasiswa berhasil diubah",
+        "data" => $this->model_mahasiswa->getListMahasiswa()
+      ]);
+    } catch (\Exception $e) {
+      echo json_encode(["error" => true, "message" => $e->getMessage()]);
+    }
+  }
+
+  public function delete($id = "")
+  {
     try {
       $deleteMahasiswa = $this->model_mahasiswa->deleteMahasiswa($id);
       if ($deleteMahasiswa < 1) throw new Exception("Mahasiswa gagal terhapus");
@@ -97,15 +122,29 @@ class Mahasiswa extends Controller
     }
   }
 
-  public function get_mahasiswa_by_id($id){
+  public function get_mahasiswa_by_id($id)
+  {
     try {
       if (empty($id)) throw new Exception("Id tidak boleh kosong");
       $mhs = $this->model_mahasiswa->getMahasiswaById($id);
-      if(!$mhs) throw new Exception(("Mahasiswa dengan id tersebut tidak tersedia !!!"));
+      if (!$mhs) throw new Exception(("Mahasiswa dengan id tersebut tidak tersedia !!!"));
       echo json_encode([
         "error" => false,
         "message" => "Mahasiswa berhasil dihapus",
         "data" => $mhs
+      ]);
+    } catch (\Exception $e) {
+      echo json_encode(["error" => true, "message" => $e->getMessage()]);
+    }
+  }
+
+  public function search(){
+    try {
+      $body = $_POST;
+      echo json_encode([
+        "error" => false,
+        "message" => "Mahasiswa berhasil dicari",
+        "data" => $this->model_mahasiswa->searchMahasiswa($body)
       ]);
     } catch (\Exception $e) {
       echo json_encode(["error" => true, "message" => $e->getMessage()]);

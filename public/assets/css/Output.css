@@ -723,6 +723,10 @@ video {
   width: 1.5rem;
 }
 
+.w-3{
+  width: 0.75rem;
+}
+
 .w-\[30px\]{
   width: 30px;
 }
@@ -737,6 +741,14 @@ video {
 
 .w-1\/2{
   width: 50%;
+}
+
+.w-1\/4{
+  width: 25%;
+}
+
+.w-3\/4{
+  width: 75%;
 }
 
 .max-w-full{
@@ -1259,6 +1271,14 @@ body {
   flex-wrap: wrap;
   align-items: stretch;
   width: 100%;
+}
+
+.input_group .input_search:focus ~ button .bi.focus::before {
+  content: "\f62a";
+}
+
+.input_group .input_search ~ button .bi.not_focus::before {
+  content: "\f52a";
 }
 
 .input_group > .form_control, .input_group > .form_control_search {
